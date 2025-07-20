@@ -1,0 +1,61 @@
+exchange:
+  name: "kraken"
+  apiKey: "0BTrcuSOc4/r+USxlzU2qtY2hvfrXUpM9WCovIZwmTot8s1/O3RHehS4"
+  secret: "MsUixKiPqaiSJO0aVVSkieGuAtqea88gGN3MHhbFnVHvr5WUmTrZFqb88gFM2A7DxGmUShFqUZHk9GWZcxZKLA=="
+  enableRateLimit: true
+
+
+portfolio:
+  stable_symbol: "USD"
+
+margin_portfolio:
+  stable_symbol: "EUR"
+
+ml:
+  daily_growth_factor: 1.05
+  daily_ga: true
+  weekly_rl: true
+
+fundamental:
+  coinmarketcap_api: "504bc39d-6569-4beb-8cca-57f4d01bd997"
+
+logging_level: "INFO"
+
+initial_investment: 700
+
+# meltdown_threshold, position sizing, etc. can be stored in meta_parameters,
+# but let's define defaults if they are not in DB:
+strategy_defaults:
+  meltdown_threshold: 0.30
+  max_position_fraction: 0.30
+  dip_buy_pct_drop: 0.05
+  partial_sell_gain: 0.10
+  extreme_spike_gain: 0.20
+  momentum_rsi: 60
+  momentum_fraction: 0.05
+  core_ratio: 0.70
+  partial_sell_ratio: 0.10
+  extreme_sell_ratio: 0.25
+
+# optional kraken map
+# configmargin.yaml
+kraken_map:
+  BTC: "XBT"
+  ETH: "ETH"
+  DOGE: "XDGE"
+  XRP: "XRP"
+  # add the new ones below
+  AAVE: "AAVE"
+  APT: "APT"
+  AVAX: "AVAX"
+  BCH: "BCH"
+  DOT: "DOT"
+  LINK: "LINK"
+  SOL: "SOL"
+  # If you see "XETHZ", "XXBTZ" or "XXLMZ" in your open positions, map them to a simpler base:
+  XETHZ: "ETH"
+  XXBTZ: "XBT"
+  XXLMZ: "XLM"
+  XLTCZ: "LTC"
+  XDG:   "XDGE"   # if you see DOGE as "XDG" in some contexts
+

@@ -1,0 +1,91 @@
+exchange:
+  name: "kraken"
+  apiKey: "ERipW/a575AKU0qddmypTFRjfu6i5NsNdwqCo8235drbU8enxNTfkIHl"
+  secret: "lKiQt6N7Cohii4fMLrXuBusD/qebaRYbuni1FunnSNxgTYXSQDuGU0Tq1+wJrQy73PbE2Fo9hleHENa0NXqLYg=="
+  enableRateLimit: true
+
+
+portfolio:
+  stable_symbol: "USD"
+
+margin_portfolio:
+  stable_symbol: "EUR"
+
+ml:
+  daily_growth_factor: 1.05
+  daily_ga: true
+  weekly_rl: true
+
+fundamental:
+  coinmarketcap_api: "504bc39d-6569-4beb-8cca-57f4d01bd997"
+
+logging_level: "INFO"
+
+initial_investment: 200
+
+# meltdown_threshold, position sizing, etc. can be stored in meta_parameters,
+# but let's define defaults if they are not in DB:
+strategy_defaults:
+  meltdown_threshold: 0.30
+  max_position_fraction: 0.30
+  dip_buy_pct_drop: 0.05
+  partial_sell_gain: 0.10
+  extreme_spike_gain: 0.20
+  momentum_rsi: 60
+  momentum_fraction: 0.05
+  core_ratio: 0.70
+  partial_sell_ratio: 0.10
+  extreme_sell_ratio: 0.25
+
+# optional kraken map
+kraken_map:
+  BTC: "XBT"
+  ETH: "XETH"
+  DOGE: "XDGE"
+  XRP: "XXRP"
+
+arbitrage_exchanges:
+  - name: "kraken"    # second kraken acct
+    apiKey: "ZzjkmP/skgP6NRBsWCAJipqP4MGjg9Wbwn9mWJOky6C8n81cdYNoK1Rn"
+    secret: "28piTj3Sb+N8OEGMlyU27Awf2oY+bt/QDAYf6jcJ1nrTMjs6pFWWNMprmrOcOLqZHI82IRa9Pnf/W2bfkNQTnA=="
+  - name: "bitvavo"
+    apiKey: "e6b0633fb4ba8c5d14d1d772bc6e7fa5b1c591d661d10cb8fd69b12409cc23f5"
+    secret: "54a71f2975aebbbb6b2193b42cef72ab96d0dd3de8f2d56b5ae95928f147872b33a2c3d46cd050464e470a3e916f410219c4e6fec8ea3aa82252418a15a38e44"
+
+
+arbitrage_defaults:
+  profit_threshold: 0.0005
+  trade_fraction: 0.01
+
+arbitrage_pairs:
+  - "BTC/USDC"
+  
+#######################################################
+# Sniper / Solana
+#######################################################
+web3:                           # <-- changed to nest under 'web3'
+  solana:
+    rpc_url: "https://api.mainnet-beta.solana.com"
+    phantom_privkey: "22gyZ9GM98CRzPxZnJ5aMeQgyeShsbtQLzpArnfjtafKU4Ya1Zqd9EXdyJ65J1o8gFuJM7vQ1uALpaK9AEXFx6ib"
+
+dex_params:                     # <-- needed for meltdown
+  sniper_meltdown_threshold: 0.30
+  sniper_partial_meltdown_threshold: 0.20
+  sniper_partial_meltdown_ratio: 0.50
+
+sniper_params:
+  # If you truly want $50, you'd need to convert it to SOL or code that logic.
+  # For now, let's directly specify bet_size_sol:
+  bet_size_sol: 2.0            # <-- changed from bet_size_usd
+  max_daily_trades: 10
+  rsi_sell: 80
+  time_stop_hours: 48
+
+# aggregator references
+solana:
+  stable_mint: "EPjFWdd5AurvHTP6Dvda2F3f3iC7jgR7Bexu4kV5dr4"
+  aggregator:
+    name: "jupiter"
+    quote_url: "https://quote-api.jup.ag/v1/quote"
+    swap_url: "https://quote-api.jup.ag/v1/swap"
+ 
